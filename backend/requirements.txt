@@ -1,0 +1,10 @@
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+pdfplumber==0.11.6
+anthropic==0.52.0
+python-dotenv==1.1.0
+python-multipart==0.0.20
+
+# dev / test
+pytest==8.4.2
+httpx==0.28.1
