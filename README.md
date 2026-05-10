@@ -75,8 +75,10 @@ backend/
       pdf.py             # PDF text extraction
   tests/
     conftest.py          # Shared pytest fixtures
-    test_routes.py       # Endpoint tests
-    test_analyser.py     # Service tests
+    api/
+      test_routes.py     # Endpoint tests
+    services/
+      test_analyser.py   # Service tests
 
 frontend/src/
   App.tsx

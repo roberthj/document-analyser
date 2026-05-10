@@ -2,11 +2,12 @@ import os
 import anthropic
 
 _client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+_llm_model = os.environ["LLM_MODEL"]
 
 # Use tool to make claude return structured data
 def run_extraction(user_prompt: str, system_prompt: str, tool_schema: dict) -> dict:
     response = _client.messages.create(
-        model="claude-sonnet-4-6",
+        model=_llm_model,
         max_tokens=2048,
         system=system_prompt,
         tools=[tool_schema],

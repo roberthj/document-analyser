@@ -1,14 +1,12 @@
 from unittest.mock import patch
 
-import pytest
-
-from app.models.document_type import DocumentType
-from app.services.analyser import analyse_document
+from app.services.analyser import analyse_annual_report
 
 MOCK_RAW_RESULT = {
     "association": {"name": "BRF Testföreningen", "board_members": []},
     "loans": [],
     "summary": "A well-managed association.",
+    "notes": [],
 }
 
 
@@ -17,12 +15,7 @@ def test_annual_report_returns_validated_result():
         patch("app.services.analyser.extract_text", return_value="extracted text"),
         patch("app.services.analyser.run_extraction", return_value=MOCK_RAW_RESULT),
     ):
-        result = analyse_document(b"fake pdf bytes", DocumentType.ANNUAL_REPORT)
+        result = analyse_annual_report(b"fake pdf bytes")
 
     assert result.association.name == "BRF Testföreningen"
     assert result.summary == "A well-managed association."
-
-
-def test_unsupported_document_type_raises():
-    with pytest.raises(ValueError, match="Unsupported document type"):
-        analyse_document(b"fake pdf bytes", "UNSUPPORTED")

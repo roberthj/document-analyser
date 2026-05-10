@@ -1,8 +1,7 @@
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
-from app.models.document_type import DocumentType
-from app.models.report_analysis import ReportAnalysis
-from app.services.analyser import analyse_document
+from app.models.annual_report_analysis import AnnualReportAnalysis
+from app.services.analyser import analyse_annual_report
 
 router = APIRouter()
 
@@ -12,8 +11,8 @@ def health():
     return {"status": "ok"}
 
 
-@router.post("/annual-report/analyse", response_model=ReportAnalysis)
-async def analyse_annual_report(file: UploadFile = File(...)):
+@router.post("/annual-report/analyse", response_model=AnnualReportAnalysis)
+async def annual_report_analyse(file: UploadFile = File(...)):
     if file.content_type != "application/pdf":
         raise HTTPException(status_code=400, detail="Only PDF files are accepted.")
 
@@ -21,6 +20,5 @@ async def analyse_annual_report(file: UploadFile = File(...)):
 
     if not contents:
         raise HTTPException(status_code=422, detail="Could not extract text from PDF.")
-        # 422 Unprocessable Entity
 
-    return analyse_document(contents, DocumentType.ANNUAL_REPORT)
+    return analyse_annual_report(contents)

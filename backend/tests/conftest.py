@@ -11,8 +11,8 @@ def client():
 
 @pytest.fixture
 def mock_analysis():
-    from app.models.report_analysis import AssociationFacts, ReportAnalysis
-    return ReportAnalysis(
+    from app.models.annual_report_analysis import AssociationFacts, AnnualReportAnalysis
+    return AnnualReportAnalysis(
         association=AssociationFacts(name="BRF Testföreningen"),
         loans=[],
         summary="A well-managed association with no outstanding loans.",
