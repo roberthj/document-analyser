@@ -23,4 +23,5 @@ export interface ReportAnalysis {
   association: AssociationFacts;
   loans: Loan[];
   summary: string;
+  notes: string[];
 }

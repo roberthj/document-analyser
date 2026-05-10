@@ -27,3 +27,4 @@ class ReportAnalysis(BaseModel):
     association: AssociationFacts
     loans: List[Loan] = []
     summary: str
+    notes: List[str] = []

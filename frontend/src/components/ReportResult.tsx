@@ -14,10 +14,19 @@ interface Props {
 }
 
 export function ReportResult({ data }: Props) {
-  const { association, loans, summary } = data;
+  const { association, loans, summary, notes } = data;
 
   return (
     <div style={{ maxWidth: 800, margin: "0 auto", display: "flex", flexDirection: "column", gap: 32 }}>
+      {notes.length > 0 && (
+        <section>
+          <h2 style={{ color: "#f0a500" }}>Flagged irregularities</h2>
+          <ul style={{ color: "#f0a500", lineHeight: 1.8, paddingLeft: 20 }}>
+            {notes.map((note, i) => <li key={i}>{note}</li>)}
+          </ul>
+        </section>
+      )}
+
       <section>
         <h2>Summary</h2>
         <p style={{ color: "#ccc", lineHeight: 1.6 }}>{summary}</p>

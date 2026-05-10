@@ -63,14 +63,14 @@ backend/
     api/
       routes.py          # Route handlers
     models/
-      document.py        # DocumentType enum
-      report.py          # Pydantic schemas (ReportAnalysis, Loan, etc.)
+      document_type.py   # DocumentType enum
+      report_analysis.py # Pydantic schemas (ReportAnalysis, Loan, etc.)
     services/
       analyser.py        # Orchestration (PDF → LLM → result)
     clients/
       claude_client.py   # Anthropic API wrapper
     prompts/
-      report.py          # System prompt, tool schema, user prompt builder
+      annual_report_extraction.py  # System prompt, tool schema, user prompt builder
     utils/
       pdf.py             # PDF text extraction
   tests/

@@ -2,7 +2,7 @@ from unittest.mock import patch
 
 import pytest
 
-from app.models.document import DocumentType
+from app.models.document_type import DocumentType
 from app.services.analyser import analyse_document
 
 MOCK_RAW_RESULT = {
