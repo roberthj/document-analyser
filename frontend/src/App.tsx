@@ -11,9 +11,9 @@ export default function App() {
   return (
     <div style={{ minHeight: "100vh", background: "#0f0f0f", color: "#eee", fontFamily: "system-ui, sans-serif", padding: "40px 24px" }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
-        <h1 style={{ textAlign: "center", marginBottom: 8 }}>Document Analyser</h1>
+        <h1 style={{ textAlign: "center", marginBottom: 8 }}>Annual Report Analyser</h1>
         <p style={{ textAlign: "center", color: "#888", marginBottom: 40 }}>
-          Upload a PDF document to extract key information.
+          Upload an annual report PDF to extract key information.
         </p>
 
         <FileUpload
