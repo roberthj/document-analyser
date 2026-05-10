@@ -1,10 +1,10 @@
 # Document Analyser
 
-AI-powered tool that extracts structured data from PDF documents using Claude.
+AI-powered tool that extracts structured data from PDF documents using Claude API.
 
 ## Stack
 
-- **Backend**: Python, FastAPI, pdfplumber, Anthropic SDK
+- **Backend**: Python 3.12, FastAPI, pdfplumber, Anthropic SDK
 - **Frontend**: React 18, TypeScript, Vite
 - **LLM**: Claude Sonnet 4.6 (structured output via tool use)
 
@@ -12,9 +12,12 @@ AI-powered tool that extracts structured data from PDF documents using Claude.
 
 ### Backend
 
+Requires Python 3.12 ([pyenv](https://github.com/pyenv/pyenv) recommended).
+
 ```bash
 cd backend
-python3 -m venv venv && source venv/bin/activate
+~/.pyenv/versions/3.12.13/bin/python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env   # then add your ANTHROPIC_API_KEY
 uvicorn app.main:app --reload
@@ -49,10 +52,10 @@ pytest tests/ -v
 
 ## API
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/annual-report/analyse` | Analyse a HoA annual report PDF |
-| GET | `/health` | Health check |
+| Method | Endpoint | Description                  |
+|--------|----------|------------------------------|
+| POST | `/annual-report/analyse` | Analyse an annual report PDF |
+| GET | `/health` | Health check                 |
 
 ## Project structure
 
@@ -64,7 +67,7 @@ backend/
       routes.py          # Route handlers
     models/
       document_type.py   # DocumentType enum
-      report_analysis.py # Pydantic schemas (ReportAnalysis, Loan, etc.)
+      annual_report_analysis.py # Pydantic schemas (AnnualReportAnalysis, Loan, etc.)
     services/
       analyser.py        # Orchestration (PDF → LLM → result)
     clients/
