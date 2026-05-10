@@ -8,6 +8,7 @@ from app.api.routes import router
 
 app = FastAPI(title="Document Analyser")
 
+# To allow requests from frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],

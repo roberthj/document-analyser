@@ -23,7 +23,7 @@ class AssociationFacts(BaseModel):
     board_members: List[BoardMember] = []
 
 
-class ReportAnalysis(BaseModel):
+class AnnualReportAnalysis(BaseModel):
     association: AssociationFacts
     loans: List[Loan] = []
     summary: str

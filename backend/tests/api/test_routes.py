@@ -18,7 +18,7 @@ def test_rejects_empty_file(client):
 
 
 def test_returns_analysis_for_valid_pdf(client, mock_analysis):
-    with patch("app.api.routes.analyse_document", return_value=mock_analysis):
+    with patch("app.api.routes.analyse_annual_report", return_value=mock_analysis):
         response = client.post(
             "/annual-report/analyse",
             files={"file": ("report.pdf", b"%PDF-fake", "application/pdf")},
