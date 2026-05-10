@@ -1,7 +1,7 @@
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
-from app.models.document import DocumentType
-from app.models.report import ReportAnalysis
+from app.models.document_type import DocumentType
+from app.models.report_analysis import ReportAnalysis
 from app.services.analyser import analyse_document
 
 router = APIRouter()

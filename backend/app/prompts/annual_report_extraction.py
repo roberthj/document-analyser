@@ -8,10 +8,21 @@ Rules:
 - For loans, only include entries clearly described as formal loans or credit facilities
   (e.g. from a bank or lender). Exclude informal mentions.
 - The summary should be 2-3 plain-language sentences aimed at a non-expert homeowner.
-- Currency is typically SEK unless stated otherwise.
 - For interest rates, include the full description as a string (e.g. "Stibor + 1.2%").
 - For maturity dates, use the format stated in the document (e.g. "2026-03-31").
-- The response should be in english
+- The response should be in english only. Do not show the original text from any other language.
+
+When analyzing financial statements:
+
+- Always perform consistency and reasonableness checks across the document.
+- Prioritize tables and notes over descriptive text when values conflict.
+- Validate monetary amounts against related figures such as:
+    - total assets
+    - interest expense
+    - debt per sqm
+    - prior years
+- If a unit label (e.g. SEK, TSEK, MSEK) creates clearly unreasonable values, assume the label may be incorrect and choose the interpretation most consistent with the rest of the financial statements.
+- Explicitly flag suspected unit or formatting errors.
 """.strip()
 
 ANNUAL_REPORT_TOOL_SCHEMA = {
@@ -56,8 +67,13 @@ ANNUAL_REPORT_TOOL_SCHEMA = {
                 },
             },
             "summary": {"type": "string"},
+            "notes": {
+                "type": "array",
+                "description": "List of flagged inconsistencies, suspected unit errors, or other irregularities found in the document. Empty if none found.",
+                "items": {"type": "string"},
+            },
         },
-        "required": ["association", "loans", "summary"],
+        "required": ["association", "loans", "summary", "notes"],
     },
 }
 

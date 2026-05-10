@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
 from app.clients.claude_client import run_extraction
-from app.models.document import DocumentType
-from app.models.report import ReportAnalysis
-from app.prompts.report import (
+from app.models.document_type import DocumentType
+from app.models.report_analysis import ReportAnalysis
+from app.prompts.annual_report_extraction import (
     ANNUAL_REPORT_SYSTEM_PROMPT,
     ANNUAL_REPORT_TOOL_SCHEMA,
     build_annual_report_prompt,

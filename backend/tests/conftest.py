@@ -11,7 +11,7 @@ def client():
 
 @pytest.fixture
 def mock_analysis():
-    from app.models.report import AssociationFacts, ReportAnalysis
+    from app.models.report_analysis import AssociationFacts, ReportAnalysis
     return ReportAnalysis(
         association=AssociationFacts(name="BRF Testföreningen"),
         loans=[],
