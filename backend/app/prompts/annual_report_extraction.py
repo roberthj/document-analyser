@@ -80,9 +80,9 @@ ANNUAL_REPORT_TOOL_SCHEMA = {
 
 def build_annual_report_prompt(text: str) -> str:
     return (
-        "Please extract the key information from the following annual report.\n\n"
+        "The following is a HoA annual report. "
+        "Extract the association facts, all formal loans, and produce a plain-language summary.\n\n"
         "---\n"
         f"{text}\n"
-        "---\n\n"
-        "Call the run_extraction tool with the structured data."
+        "---"
     )

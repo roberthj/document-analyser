@@ -28,3 +28,15 @@ def test_returns_analysis_for_valid_pdf(client, mock_analysis):
     data = response.json()
     assert data["association"]["name"] == "BRF Testföreningen"
     assert data["summary"] == "A well-managed association with no outstanding loans."
+
+
+def test_returns_500_when_claude_returns_no_tool_block():
+    from fastapi.testclient import TestClient
+    from app.main import app
+    with TestClient(app, raise_server_exceptions=False) as client:
+        with patch("app.api.routes.analyse_annual_report", side_effect=ValueError("Claude did not return a tool use block")):
+            response = client.post(
+                "/annual-report/analyse",
+                files={"file": ("report.pdf", b"%PDF-fake", "application/pdf")},
+            )
+    assert response.status_code == 500

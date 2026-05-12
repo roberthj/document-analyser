@@ -14,4 +14,4 @@ def analyse_annual_report(pdf_bytes: bytes) -> AnnualReportAnalysis:
                             system_prompt=ANNUAL_REPORT_SYSTEM_PROMPT,      # The rules
                             tool_schema=ANNUAL_REPORT_TOOL_SCHEMA)          # The response structure
 
-    return AnnualReportAnalysis.model_validate(result)
+    return AnnualReportAnalysis.model_validate(result)                      # Validate result and map to model (Pydantic BaseModel)

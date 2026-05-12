@@ -2,6 +2,21 @@
 
 AI-powered tool that extracts structured data from PDF documents using Claude API.
 
+## Key decisions
+ - Backend: General document analyser that can be extended to other types of documents
+ - Frontend: Specific for Annual Reports
+ - Enforcing consistent LLM responses using Tool with schema
+ - Caching of System Prompt to reduce costs
+ - Prompt:
+   - Validating the unit (SEK/TSEK)
+   - Notes section in response to highlight irregularities
+   - Enforcing English language in the response
+
+
+
+    
+
+
 ## Stack
 
 - **Backend**: Python 3.12, FastAPI, pdfplumber, Anthropic SDK
@@ -16,7 +31,7 @@ Requires Python 3.12 ([pyenv](https://github.com/pyenv/pyenv) recommended).
 
 ```bash
 cd backend
-~/.pyenv/versions/3.12.13/bin/python3 -m venv venv
+python -m venv .venv
 source venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env   # then add your ANTHROPIC_API_KEY
@@ -57,36 +72,3 @@ pytest tests/ -v
 | POST | `/annual-report/analyse` | Analyse an annual report PDF |
 | GET | `/health` | Health check                 |
 
-## Project structure
-
-```
-backend/
-  app/
-    main.py              # FastAPI app factory, middleware, router
-    api/
-      routes.py          # Route handlers
-    models/
-      document_type.py   # DocumentType enum
-      annual_report_analysis.py # Pydantic schemas (AnnualReportAnalysis, Loan, etc.)
-    services/
-      analyser.py        # Orchestration (PDF → LLM → result)
-    clients/
-      claude_client.py   # Anthropic API wrapper
-    prompts/
-      annual_report_extraction.py  # System prompt, tool schema, user prompt builder
-    utils/
-      pdf.py             # PDF text extraction
-  tests/
-    conftest.py          # Shared pytest fixtures
-    api/
-      test_routes.py     # Endpoint tests
-    services/
-      test_analyser.py   # Service tests
-
-frontend/src/
-  App.tsx
-  types.ts
-  components/
-    FileUpload.tsx        # Drag-and-drop upload
-    ReportResult.tsx      # Display extracted data
-```
