@@ -19,6 +19,6 @@ async def annual_report_analyse(file: UploadFile = File(...)):
     contents = await file.read()
 
     if not contents:
-        raise HTTPException(status_code=422, detail="Could not extract text from PDF.")
+        raise HTTPException(status_code=422, detail="Uploaded file is empty.")
 
     return analyse_annual_report(contents)
