@@ -11,10 +11,9 @@ AI-powered tool that extracts structured data from PDF documents using Claude AP
    - Validating the unit (SEK/TSEK)
    - Notes section in response to highlight irregularities
    - Enforcing English language in the response
+   - Specific rule for the different dates in the schema
 
-
-
-    
+   
 
 
 ## Stack

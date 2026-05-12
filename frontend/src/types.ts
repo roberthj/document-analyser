@@ -8,6 +8,7 @@ export interface Loan {
   amount: number | null;
   currency: string | null;
   interest_rate: string | null;
+  interest_reset_date: string | null;
   maturity_date: string | null;
 }
 

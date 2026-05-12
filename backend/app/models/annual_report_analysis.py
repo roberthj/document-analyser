@@ -12,6 +12,7 @@ class Loan(BaseModel):
     amount: Optional[float] = None
     currency: Optional[str] = None
     interest_rate: Optional[str] = None
+    interest_reset_date: Optional[str] = None
     maturity_date: Optional[str] = None
 
 

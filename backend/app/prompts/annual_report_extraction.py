@@ -9,7 +9,7 @@ Rules:
   (e.g. from a bank or lender). Exclude informal mentions.
 - The summary should be 2-3 plain-language sentences aimed at a non-expert homeowner.
 - For interest rates, include the full description as a string (e.g. "Stibor + 1.2%").
-- For maturity dates, use the format stated in the document (e.g. "2026-03-31").
+- For dates, use the format stated in the document (e.g. "2026-03-31").
 - The response should be in english only. Do not show the original text from any other language.
 
 When analyzing financial statements:
@@ -61,7 +61,8 @@ ANNUAL_REPORT_TOOL_SCHEMA = {
                         "amount": {"type": ["number", "null"]},
                         "currency": {"type": ["string", "null"]},
                         "interest_rate": {"type": ["string", "null"]},
-                        "maturity_date": {"type": ["string", "null"]},
+                        "interest_reset_date": {"type": ["string", "null"], "description": "The date when interest rate terms can be renegotiated (villkorsändringsdag). Distinct from maturity date."},
+                        "maturity_date": {"type": ["string", "null"], "description": "Final repayment date of the loan. Do NOT use villkorsändringsdag (interest reset date) as maturity date — these are different concepts."},
                     },
                     "required": ["lender"],
                 },

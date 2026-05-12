@@ -68,7 +68,8 @@ export function ReportResult({ data }: Props) {
                 <th style={thStyle}>Lender</th>
                 <th style={thStyle}>Amount</th>
                 <th style={thStyle}>Interest rate</th>
-                <th style={thStyle}>Maturity</th>
+                <th style={thStyle}>Interest reset date</th>
+                <th style={thStyle}>Maturity date</th>
               </tr>
             </thead>
             <tbody>
@@ -77,6 +78,7 @@ export function ReportResult({ data }: Props) {
                   <td style={tdStyle}>{l.lender}</td>
                   <td style={tdStyle}>{fmt(l.amount, l.currency)}</td>
                   <td style={tdStyle}>{val(l.interest_rate)}</td>
+                  <td style={tdStyle}>{val(l.interest_reset_date)}</td>
                   <td style={tdStyle}>{val(l.maturity_date)}</td>
                 </tr>
               ))}
