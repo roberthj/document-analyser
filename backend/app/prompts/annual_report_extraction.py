@@ -9,7 +9,7 @@ Rules:
   (e.g. from a bank or lender). Exclude informal mentions.
 - The summary should be 2-3 plain-language sentences aimed at a non-expert homeowner.
 - For interest rates, include the full description as a string (e.g. "Stibor + 1.2%").
-- For dates, use the format stated in the document (e.g. "2026-03-31").
+- For dates, use the format YYYY-MM-DD (e.g. "2026-03-31").
 - The response should be in english only. Do not show the original text from any other language.
 
 When analyzing financial statements:
