@@ -6,29 +6,29 @@
 
 ### 1. Decouple Upload from Processing
 
-To be able to scale up a lot we could add async processing via message queues and workers.
+To be able to scale up a lot I would add async processing via message queues and workers.
 
-Upload to Storage and put a message on a queue for processing
+Upload to Storage via API and put a message on a queue for processing via workers.
 
-- **Object storage** (GCS / S3) for raw PDFs
+**Object storage** (GCS / S3) for raw PDFs
 
 
 ```
 Frontend
   ↓
 FastAPI Upload Service     → stores PDF in object storage
-  ↓                        → publishes event to Pub/Sub
+  ↓                        → publishes event to Pub/Sub, Kafka or similar
 Returns immediately        → (job_id, status: "processing")
   ↓
 AI Worker (separate service)
-  ↓  consumes Pub/Sub event
+  ↓  consumes event
   ↓  extracts + calls Claude
   ↓  stores result in PostgreSQL
   ↓
 Frontend polls job_id until status = "completed"
 ```
 
-**Pub/Sub message example:**
+**Message example:**
 ```json
 {
   "document_id": "123",
@@ -37,6 +37,8 @@ Frontend polls job_id until status = "completed"
   "uploaded_at": "2026-05-10T10:00:00Z"
 }
 ```
+There could be a first step of using BackgroundTasks instead of events, 
+but they can not scale independently of the API and don't have the same retry possibilities on error.
 
 ### 2. Persistence Layer (PostgreSQL)
 
