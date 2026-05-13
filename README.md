@@ -2,17 +2,19 @@
 
 AI-powered tool that extracts structured data from PDF documents using Claude API.
 
-## Key decisions
+## Key decisions (MVP)
  - Backend: General document analyser that can be extended to other types of documents
  - Frontend: Specific for Annual Reports
  - Enforcing consistent LLM responses using Tool with schema
  - Caching of System Prompt to reduce costs
  - Prompt:
+   - Do not infer or guess, only explicitly stated
    - Validating the unit (SEK/TSEK)
    - Notes section in response to highlight irregularities
    - Enforcing English language in the response
    - Specific rule for the different dates in the schema
 
+Thoughts on improvements for production in **PRODUCTION_THOUGHTS.md** file.
    
 
 

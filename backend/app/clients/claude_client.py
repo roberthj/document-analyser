@@ -19,5 +19,5 @@ def run_extraction(user_prompt: str, system_prompt: str, tool_schema: dict) -> A
     tool_block = next((b for b in response.content if b.type == "tool_use"), None)  # Getting only the structured data
 
     if tool_block is None:
-        raise ValueError("Claude did not return a tool use block")          #Will return 500 response. Could catch this and make friendlier response
+        raise ValueError("Claude did not return a tool use block")          #Will return 500 response
     return tool_block.input
